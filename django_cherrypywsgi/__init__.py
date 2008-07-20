@@ -18,8 +18,8 @@ class DjangoCherryPyWSGIServer(wsgiserver.CherryPyWSGIServer):
             'DCPWSGI_NUM_THREADS', 10)
         server_name = getattr(settings,
             'DCPWSGI_SERVER_NAME', None)
-        max_request = getattr(settings,
-            'DCPWSGI_MAX_REQUESTS', -1)
+        max_queued_request = getattr(settings,
+            'DCPWSGI_MAX_QUEUED_REQUESTS', -1)
         request_queue_size = getattr(settings,
             'DCPWSGI_REQUEST_QUEUE_SIZE', 5)
         timeout = getattr(settings,
@@ -32,7 +32,7 @@ class DjangoCherryPyWSGIServer(wsgiserver.CherryPyWSGIServer):
                 wsgi_app=wsgi_app,
                 numthreads=numthreads,
                 server_name=server_name,
-                max=max_request,
+                max=max_queued_request,
                 request_queue_size=request_queue_size,
                 timeout=timeout,
                 shutdown_timeout=shutdown_timeout)
